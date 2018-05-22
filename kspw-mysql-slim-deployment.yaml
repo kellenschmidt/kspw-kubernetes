@@ -44,14 +44,14 @@ spec:
           value: "127.0.0.1:3306"
         envFrom:
         - secretRef:
-            name: mysql
+            name: mysql-login
         ports:
         - containerPort: 80
       - name: kspw-mysql
         image: mysql:5.7
         envFrom:
         - secretRef:
-            name: mysql
+            name: mysql-login
         ports:
         - containerPort: 3306
         volumeMounts:
@@ -59,14 +59,24 @@ spec:
           mountPath: /var/lib/mysql
         - name: mysql-grant-permissions
           mountPath: /docker-entrypoint-initdb.d
-      # - name: kspw-mysql-cron
-      #   image: kellenschmidt/kspw-cron:v1
-      #   lifecycle:
-      #     preStop:
-      #       exec:
-      #         command: ["/home/bin/backup_db.sh","exit","&&","/home/bin/remove_backups.sh","exit","&&","/home/bin/upload_cloud.sh"]
+      - name: kspw-mysql-cron
+        image: kellenschmidt/kspw-mysql-cron:v1
+        envFrom:
+        - secretRef:
+            name: mysql-login
+        - secretRef:
+            name: dropbox-uploader-token
+        volumeMounts:
+        - name: mysql-backups
+          mountPath: /home/backups
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/home/bin/backup_db.sh","exit","&&","/home/bin/remove_backups.sh","exit","&&","/home/bin/upload_cloud.sh"]
       volumes:
       - name: mysql-storage
+        emptyDir: {}
+      - name: mysql-backups
         emptyDir: {}
       - name: mysql-grant-permissions
         configMap:

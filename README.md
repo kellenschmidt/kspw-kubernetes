@@ -3,6 +3,7 @@
 ## Build pods
 
 - `kubectl create -f mysql-login-secret.yaml`
+- `kubectl create -f dropbox-uploader-secret.yaml`
 - `kubectl create -f kspw-angular-deployment.yaml`
 - `kubectl create -f kspw-mysql-slim-deployment.yaml`
 - `kubectl create -f kspw-phpmyadmin-deployment.yaml`

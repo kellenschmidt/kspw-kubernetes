@@ -12,7 +12,7 @@ spec:
   - host: kspw
     http:
       paths:
-      - path: /*
+      - path: /
         backend:
           serviceName: kspw-angular
           servicePort: 80
