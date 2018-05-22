@@ -26,6 +26,6 @@ spec:
     spec:
       containers:
       - name: kspw-angular
-        image: kellenschmidt/kspw-angular:v2
+        image: kellenschmidt/kspw-angular:v3
         ports:
         - containerPort: 80

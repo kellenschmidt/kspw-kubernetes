@@ -45,6 +45,8 @@ spec:
         envFrom:
         - secretRef:
             name: mysql-login
+        - secretRef:
+            name: jwt
         ports:
         - containerPort: 80
       - name: kspw-mysql
