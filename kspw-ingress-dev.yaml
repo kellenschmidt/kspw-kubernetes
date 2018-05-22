@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kspw-ingress-dev
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  backend:
+    serviceName: default-http-backend
+    servicePort: 80
+  rules:
+  - host: kspw
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: kspw-angular
+          servicePort: 80
+      - path: /dqc
+        backend:
+          serviceName: kspw-dqc
+          servicePort: 80
+  - host: api.kspw
+    http:
+      paths:
+      - path: /v1
+        backend:
+          serviceName: kspw-mysql-slim
+          servicePort: 80
+      - path: /v2
+        backend:
+          serviceName: kspw-express
+          servicePort: 80
+  - host: pma.kspw
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kspw-phpmyadmin
+          servicePort: 80
+  - host: dashboard.kspw
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kubernetes-dashboard
+          servicePort: 80

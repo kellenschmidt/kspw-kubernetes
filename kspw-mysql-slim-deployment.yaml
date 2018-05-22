@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kspw-mysql-slim
+  labels:
+    app: url-shortener
+spec:
+  ports:
+  - port: 80
+    name: http
+  - port: 3306
+    name: database
+  selector:
+    app: url-shortener
+---
+apiVersion: v1
+data:
+  grant_permissions.sql: |
+    GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,ALTER,DROP ON personal_website.* TO 'kellen'@'%';
+kind: ConfigMap
+metadata:
+  name: mysql-grant-permissions-config
+  namespace: default
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kspw-mysql-slim
+spec:
+  selector:
+    matchLabels:
+      app: url-shortener
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: url-shortener
+    spec:
+      containers:
+      - name: kspw-slimphp
+        image: kellenschmidt/kspw-slimphp:v2
+        envFrom:
+        - secretRef:
+            name: mysql
+        ports:
+        - containerPort: 80
+      - name: kspw-mysql
+        image: mysql:5.7
+        envFrom:
+        - secretRef:
+            name: mysql
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: mysql-storage
+          mountPath: /var/lib/mysql
+        - name: mysql-grant-permissions
+          mountPath: /docker-entrypoint-initdb.d
+      # - name: kspw-mysql-cron
+      #   image: kellenschmidt/kspw-cron:v1
+      #   lifecycle:
+      #     preStop:
+      #       exec:
+      #         command: ["/home/bin/backup_db.sh","exit","&&","/home/bin/remove_backups.sh","exit","&&","/home/bin/upload_cloud.sh"]
+      volumes:
+      - name: mysql-storage
+        emptyDir: {}
+      - name: mysql-grant-permissions
+        configMap:
+          name: mysql-grant-permissions-config
