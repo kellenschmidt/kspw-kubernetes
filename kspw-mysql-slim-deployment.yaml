@@ -38,7 +38,10 @@ spec:
     spec:
       containers:
       - name: kspw-slimphp
-        image: kellenschmidt/kspw-slimphp:v2
+        image: kellenschmidt/kspw-slimphp:v3
+        env:
+        - name: MYSQL_HOST
+          value: "127.0.0.1:3306"
         envFrom:
         - secretRef:
             name: mysql
