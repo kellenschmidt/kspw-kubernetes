@@ -25,7 +25,7 @@ spec:
       paths:
       - path: /v1
         backend:
-          serviceName: kspw-mysql-slim
+          serviceName: kspw-slim
           servicePort: 80
       - path: /v2
         backend:

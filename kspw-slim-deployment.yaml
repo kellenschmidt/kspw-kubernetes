@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kspw-slim
+  labels:
+    app: url-shortener
+    type: api
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: url-shortener
+    type: api
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kspw-slim
+spec:
+  selector:
+    matchLabels:
+      app: url-shortener
+      type: api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: url-shortener
+        type: api
+    spec:
+      containers:
+      - name: kspw-slimphp
+        image: kellenschmidt/kspw-slimphp:v3
+        env:
+        - name: MYSQL_HOST
+          value: "kspw-mysql:3306"
+        envFrom:
+        - secretRef:
+            name: mysql-login
+        - secretRef:
+            name: jwt
+        ports:
+        - containerPort: 80

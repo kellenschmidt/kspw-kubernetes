@@ -31,8 +31,8 @@ spec:
         - containerPort: 80
         env:
         - name: PMA_HOST
-          value: "kspw-mysql-slim"
+          value: "kspw-mysql"
         - name: PMA_VERBOSE
-          value: "kspw-mysql-slim"
+          value: "kspw-mysql"
         - name: PMA_PORT
           value: "3306"

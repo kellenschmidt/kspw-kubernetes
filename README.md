@@ -5,7 +5,8 @@
 - `kubectl create -f mysql-login-secret.yaml`
 - `kubectl create -f dropbox-uploader-secret.yaml`
 - `kubectl create -f kspw-angular-deployment.yaml`
-- `kubectl create -f kspw-mysql-slim-deployment.yaml`
+- `kubectl create -f kspw-mysql-deployment.yaml`
+- `kubectl create -f kspw-slim-deployment.yaml`
 - `kubectl create -f kspw-phpmyadmin-deployment.yaml`
 - `kubectl create -f kspw-ingress-dev.yaml`
 
@@ -17,7 +18,7 @@
 
 ## Enter pod
 
-- `kubectl exec -it kspw-mysql-slim-74784c6b48-mbtpf -c kspw-mysql bash`
+- `kubectl exec -it kspw-mysql-74784c6b48-mbtpf -c kspw-mysql bash`
 
 ## Todo
 
