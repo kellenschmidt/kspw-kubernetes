@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: kspw-ingress-dev
+  name: kspw-ingress-prod
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -9,14 +9,14 @@ spec:
     serviceName: default-http-backend
     servicePort: 80
   rules:
-  - host: kspw
+  - host: kellenschmidt.com
     http:
       paths:
       - path: /
         backend:
           serviceName: kspw-angular
           servicePort: 80
-  - host: dqc.kspw
+  - host: dqc.kellenschmidt.com
     http:
       paths:
       - path: /
@@ -27,7 +27,7 @@ spec:
         backend:
           serviceName: kspw-dqc-api
           servicePort: 80
-  - host: api.kspw
+  - host: api.kellenschmidt.com
     http:
       paths:
       - path: /v1
@@ -38,14 +38,14 @@ spec:
         backend:
           serviceName: kspw-express
           servicePort: 80
-  - host: pma.kspw
+  - host: pma.kellenschmidt.com
     http:
       paths:
       - path: /
         backend:
           serviceName: kspw-phpmyadmin
           servicePort: 80
-  - host: dashboard.kspw
+  - host: dashboard.kellenschmidt.com
     http:
       paths:
       - path: /
