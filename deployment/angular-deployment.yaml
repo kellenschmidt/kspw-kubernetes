@@ -30,6 +30,7 @@ spec:
     spec:
       containers:
       - name: angular
-        image: kellenschmidt/kspw-angular:v3
+# Set version here
+        image: kellenschmidt/kspw-angular:prod2
         ports:
         - containerPort: 80

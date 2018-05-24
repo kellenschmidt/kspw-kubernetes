@@ -51,7 +51,8 @@ spec:
         - name: mysql-grant-permissions
           mountPath: /docker-entrypoint-initdb.d
       - name: mysql-cron
-        image: kellenschmidt/kspw-mysql-cron:v1
+# Set version here 
+        image: kellenschmidt/kspw-mysql-cron:prod2
         envFrom:
         - secretRef:
             name: mysql-login
