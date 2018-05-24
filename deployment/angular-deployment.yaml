@@ -1,31 +1,35 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kspw-angular
+  name: angular
   labels:
     app: interactive-resume
+    type: web
 spec:
   ports:
   - port: 80
   selector:
     app: interactive-resume
+    type: web
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kspw-angular
+  name: angular
 spec:
   selector:
     matchLabels:
       app: interactive-resume
+      type: web
   replicas: 1
   template:
     metadata:
       labels:
         app: interactive-resume
+        type: web
     spec:
       containers:
-      - name: kspw-angular
+      - name: angular
         image: kellenschmidt/kspw-angular:v3
         ports:
         - containerPort: 80

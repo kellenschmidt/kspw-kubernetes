@@ -2,37 +2,47 @@
 
 ## Build pods
 
-```
-kubectl create -f secrets/mysql-login-secret.yaml
-kubectl create -f secrets/dropbox-uploader-secret.yaml
-kubectl create -f secrets/jwt-secret.yaml
-```
-
-```
-kubectl create -f kspw-angular-deployment.yaml
-kubectl create -f kspw-mysql-deployment.yaml
-kubectl create -f kspw-slim-deployment.yaml
-kubectl create -f kspw-phpmyadmin-deployment.yaml
-kubectl create -f kspw-ingress-dev.yaml
+```sh
+kubectl create -f secret/mysql-login-secret.yaml
+kubectl create -f secret/dropbox-uploader-secret.yaml
+kubectl create -f secret/jwt-secret.yaml
 ```
 
+```sh
+kubectl create -f deployment/angular-deployment.yaml
+kubectl create -f deployment/mysql-deployment.yaml
+kubectl create -f deployment/slim-deployment.yaml
+kubectl create -f deployment/phpmyadmin-deployment.yaml
 ```
-kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/kspw-angular-deployment.yaml
-kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/kspw-ingress-dev.yaml
-kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/kspw-mysql-deployment.yaml
-kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/kspw-phpmyadmin-deployment.yaml
-kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/kspw-slim-deployment.yaml
+
+```sh
+kubectl create -f ingress/ingress-kspw.yaml
+kubectl create -f ingress/ingress-kellenforthewin.yaml
+kubectl create -f ingress/ingress-kellenschmidtcom.yaml
+```
+
+```sh
+kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/deployment/angular-deployment.yaml
+kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/deployment/mysql-deployment.yaml
+kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/deployment/slim-deployment.yaml
+kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/deployment/phpmyadmin-deployment.yaml
+```
+
+```sh
+kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/deployment/ingress-kspw.yaml
+kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/deployment/ingress-kellenforthewin.yaml
+kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/deployment/ingress-kellenschmidtcom.yaml
 ```
 
 ## Update pod
 
-- `kubectl set image deployments/kspw-mysql-slim kspw-slimphp=kellenschmidt/kspw-slimphp:v2`
-- `kubectl rollout status deployments/kspw-mysql-slim`
-- `kubectl rollout undo deployments/kspw-mysql-slim`
+- `kubectl set image deployments/mysql-slim slimphp=kellenschmidt/kspw-slimphp:v2`
+- `kubectl rollout status deployments/mysql-slim`
+- `kubectl rollout undo deployments/mysql-slim`
 
 ## Enter pod
 
-- `kubectl exec -it kspw-mysql-74784c6b48-mbtpf -c kspw-mysql bash`
+- `kubectl exec -it mysql-74784c6b48-mbtpf -c mysql bash`
 
 ## Todo
 
@@ -41,20 +51,16 @@ kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/k
 
 ## AWS Deployment
 
-- Install Docker
+- Install Docker on Ubuntu EC2 Server
 
 ```sh
-sudo yum update -y
-sudo yum install -y docker
-sudo usermod -a -G docker ec2-user
-sudo service docker start
+sudo apt-get update -y && sudo apt-get install -y docker.io
 ```
 
-- Log out and log back in
 - Install Minikube
 
 ```sh
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && mv minikube /usr/local/bin/
 ```
 
 - Install kubectl

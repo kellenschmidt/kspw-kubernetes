@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: kspw-ingress-prod
+  name: ingress-kellenforthewin
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -9,43 +9,61 @@ spec:
     serviceName: default-http-backend
     servicePort: 80
   rules:
-  - host: kellenschmidt.com
+  - host: kellenforthe.win
     http:
       paths:
       - path: /
         backend:
-          serviceName: kspw-angular
+          serviceName: angular
           servicePort: 80
-  - host: dqc.kellenschmidt.com
+  - host: test.kellenforthe.win
     http:
       paths:
       - path: /
         backend:
-          serviceName: kspw-dqc-web
+          serviceName: angular-TEST
+          servicePort: 80
+  - host: dqc.kellenforthe.win
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: dqc-web
           servicePort: 80
       - path: /api
         backend:
-          serviceName: kspw-dqc-api
+          serviceName: dqc-api
           servicePort: 80
-  - host: api.kellenschmidt.com
+  - host: api.kellenforthe.win
     http:
       paths:
       - path: /v1
         backend:
-          serviceName: kspw-slim
+          serviceName: slim
           servicePort: 80
       - path: /v2
         backend:
-          serviceName: kspw-express
+          serviceName: express
           servicePort: 80
-  - host: pma.kellenschmidt.com
+  - host: test.api.kellenforthe.win
+    http:
+      paths:
+      - path: /v1
+        backend:
+          serviceName: slim-TEST
+          servicePort: 80
+      - path: /v2
+        backend:
+          serviceName: express-TEST
+          servicePort: 80
+  - host: pma.kellenforthe.win
     http:
       paths:
       - path: /
         backend:
-          serviceName: kspw-phpmyadmin
+          serviceName: phpmyadmin
           servicePort: 80
-  - host: dashboard.kellenschmidt.com
+  - host: dashboard.kellenforthe.win
     http:
       paths:
       - path: /

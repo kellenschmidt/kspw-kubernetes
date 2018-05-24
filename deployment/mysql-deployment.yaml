@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kspw-mysql
+  name: mysql
   labels:
     app: url-shortener
     type: database
@@ -24,7 +24,7 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kspw-mysql
+  name: mysql
 spec:
   selector:
     matchLabels:
@@ -38,7 +38,7 @@ spec:
         type: database
     spec:
       containers:
-      - name: kspw-mysql-db
+      - name: mysql-db
         image: mysql:5.7
         envFrom:
         - secretRef:
@@ -50,7 +50,7 @@ spec:
           mountPath: /var/lib/mysql
         - name: mysql-grant-permissions
           mountPath: /docker-entrypoint-initdb.d
-      - name: kspw-mysql-cron
+      - name: mysql-cron
         image: kellenschmidt/kspw-mysql-cron:v1
         envFrom:
         - secretRef:
