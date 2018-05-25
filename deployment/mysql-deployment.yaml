@@ -52,7 +52,11 @@ spec:
           mountPath: /docker-entrypoint-initdb.d
       - name: mysql-cron
 # Set version here 
-        image: kellenschmidt/kspw-mysql-cron:prod2
+        image: kellenschmidt/kspw-mysql-cron:prod
+        env:
+        - name: ENV
+# Set environment here 
+          value: prod2
         envFrom:
         - secretRef:
             name: mysql-login

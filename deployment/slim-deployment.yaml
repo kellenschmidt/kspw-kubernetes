@@ -31,7 +31,7 @@ spec:
       containers:
       - name: slimphp
 # Set version here
-        image: kellenschmidt/kspw-slimphp:dev
+        image: kellenschmidt/kspw-slimphp:prod
         env:
         - name: MYSQL_HOST
           value: "mysql:3306"
