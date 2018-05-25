@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ingress-kspw
+  name: kellenforthewin
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -9,14 +9,21 @@ spec:
     serviceName: default-http-backend
     servicePort: 80
   rules:
-  - host: kspw
+  - host: kellenforthe.win
     http:
       paths:
       - path: /
         backend:
           serviceName: angular
           servicePort: 80
-  - host: dqc.kspw
+  - host: test.kellenforthe.win
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: test-angular
+          servicePort: 80
+  - host: dqc.kellenforthe.win
     http:
       paths:
       - path: /
@@ -27,7 +34,7 @@ spec:
         backend:
           serviceName: dqc-api
           servicePort: 80
-  - host: api.kspw
+  - host: api.kellenforthe.win
     http:
       paths:
       - path: /v1
@@ -38,14 +45,25 @@ spec:
         backend:
           serviceName: express
           servicePort: 80
-  - host: pma.kspw
+  - host: test.api.kellenforthe.win
+    http:
+      paths:
+      - path: /v1
+        backend:
+          serviceName: test-slim
+          servicePort: 80
+      - path: /v2
+        backend:
+          serviceName: test-express
+          servicePort: 80
+  - host: pma.kellenforthe.win
     http:
       paths:
       - path: /
         backend:
           serviceName: phpmyadmin
           servicePort: 80
-  - host: dashboard.kspw
+  - host: dashboard.kellenforthe.win
     http:
       paths:
       - path: /

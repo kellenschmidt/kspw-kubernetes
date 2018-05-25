@@ -18,7 +18,7 @@ data:
     GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,ALTER,DROP ON personal_website.* TO 'kellen'@'%';
 kind: ConfigMap
 metadata:
-  name: mysql-grant-permissions-config
+  name: mysql-permissions-config
   namespace: default
 ---
 apiVersion: apps/v1
@@ -48,7 +48,7 @@ spec:
         volumeMounts:
         - name: mysql-storage
           mountPath: /var/lib/mysql
-        - name: mysql-grant-permissions
+        - name: mysql-permissions
           mountPath: /docker-entrypoint-initdb.d
       - name: mysql-cron
 # Set version here 
@@ -74,6 +74,6 @@ spec:
         emptyDir: {}
       - name: mysql-backups
         emptyDir: {}
-      - name: mysql-grant-permissions
+      - name: mysql-permissions
         configMap:
-          name: mysql-grant-permissions-config
+          name: mysql-permissions-config

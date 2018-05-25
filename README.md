@@ -16,9 +16,9 @@ kubectl create -f deployment/phpmyadmin-deployment.yaml
 ```
 
 ```sh
-kubectl create -f ingress/ingress-kspw.yaml
-kubectl create -f ingress/ingress-kellenforthewin.yaml
-kubectl create -f ingress/ingress-kellenschmidtcom.yaml
+kubectl create -f ingress/kspw-ingress.yaml
+kubectl create -f ingress/kellenforthewin-ingress.yaml
+kubectl create -f ingress/kellenschmidtcom-ingress.yaml
 ```
 
 ```sh
@@ -29,9 +29,9 @@ kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/d
 ```
 
 ```sh
-kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/ingress/ingress-kspw.yaml
-kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/ingress/ingress-kellenforthewin.yaml
-kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/ingress/ingress-kellenschmidtcom.yaml
+kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/ingress/kspw-ingress.yaml
+kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/ingress/kellenforthewin-ingress.yaml
+kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/ingress/kellenschmidtcom-ingress.yaml
 ```
 
 ## Update pod
@@ -54,7 +54,7 @@ kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/i
 - Install Docker on Ubuntu EC2 Server
 
 ```sh
-sudo apt-get update -y && sudo apt-get install -y docker.io
+sudo apt-get update -qq && sudo apt-get install -qq docker.io
 ```
 
 - Install Minikube
