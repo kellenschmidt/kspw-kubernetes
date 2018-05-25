@@ -21,7 +21,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: angular-TEST
+          serviceName: test-angular
           servicePort: 80
   - host: dqc.kellenforthe.win
     http:
@@ -50,11 +50,11 @@ spec:
       paths:
       - path: /v1
         backend:
-          serviceName: slim-TEST
+          serviceName: test-slim
           servicePort: 80
       - path: /v2
         backend:
-          serviceName: express-TEST
+          serviceName: test-express
           servicePort: 80
   - host: pma.kellenforthe.win
     http:

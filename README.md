@@ -29,9 +29,9 @@ kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/d
 ```
 
 ```sh
-kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/deployment/ingress-kspw.yaml
-kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/deployment/ingress-kellenforthewin.yaml
-kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/deployment/ingress-kellenschmidtcom.yaml
+kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/ingress/ingress-kspw.yaml
+kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/ingress/ingress-kellenforthewin.yaml
+kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/ingress/ingress-kellenschmidtcom.yaml
 ```
 
 ## Update pod
