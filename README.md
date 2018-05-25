@@ -36,13 +36,13 @@ kubectl create -f https://github.com/kellenschmidt/kspw-kubernetes/blob/master/i
 
 ## Update pod
 
-- `kubectl set image deployments/mysql-slim slimphp=kellenschmidt/kspw-slimphp:v2`
-- `kubectl rollout status deployments/mysql-slim`
-- `kubectl rollout undo deployments/mysql-slim`
+- `kubectl set image deployments/slim slimphp=kellenschmidt/kspw-slimphp:prod`
+- `kubectl rollout status deployments/slim`
+- `kubectl rollout undo deployments/slim`
 
 ## Enter pod
 
-- `kubectl exec -it mysql-74784c6b48-mbtpf -c mysql bash`
+- `kubectl exec -it mysql-74784c6b48-mbtpf -c mysql-db bash`
 
 ## Todo
 

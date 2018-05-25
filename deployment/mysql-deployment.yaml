@@ -53,6 +53,7 @@ spec:
       - name: mysql-cron
 # Set version here 
         image: kellenschmidt/kspw-mysql-cron:prod
+        imagePullPolicy: Always
         env:
         - name: ENV
 # Set environment here 

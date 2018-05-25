@@ -32,6 +32,7 @@ spec:
       - name: slimphp
 # Set version here
         image: kellenschmidt/kspw-slimphp:prod
+        imagePullPolicy: Always
         env:
         - name: MYSQL_HOST
           value: "mysql:3306"
