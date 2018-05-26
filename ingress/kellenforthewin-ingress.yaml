@@ -4,7 +4,18 @@ metadata:
   name: kellenforthewin
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/tls-acme: "true"
 spec:
+  tls:
+  - hosts:
+    - kellenforthe.win
+    - api.kellenforthe.win
+    - pma.kellenforthe.win
+    - dqc.kellenforthe.win
+    - test.kellenforthe.win
+    - test.api.kellenforthe.win
+    - dashboard.kellenforthe.win
+    secretName: kellenforthewin-https
   backend:
     serviceName: default-http-backend
     servicePort: 80
