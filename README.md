@@ -1,6 +1,8 @@
 # kspw-kubernetes
 
-## Build pods
+## Kubernetes commands
+
+### Build pods
 
 ```sh
 kubectl apply -f secret/mysql-login-secret.yaml
@@ -26,13 +28,13 @@ kubectl apply -f ingress/kellenschmidtcom-ingress.yaml
 kubectl apply -f certificate/issuer.yaml
 ```
 
-## Update pod
+### Update pod
 
 - `kubectl set image deployments/slim slimphp=kellenschmidt/kspw-slimphp:prod`
 - `kubectl rollout status deployments/slim`
 - `kubectl rollout undo deployments/slim`
 
-## Enter pod
+### Enter pod
 
 - `kubectl exec -it mysql-74784c6b48-mbtpf -c mysql-db bash`
 
@@ -78,8 +80,6 @@ minikube start --vm-driver=none
 minikube status
 ```
 
-More details: https://github.com/aws-samples/aws-workshop-for-kubernetes/blob/master/03-path-application-development/301-local-development/readme.adoc
-
 12. Install Helm and Tiller
 
 ```sh
@@ -105,3 +105,12 @@ kubectl apply -f certificate/issuer.yaml
 
 15. Create all secrets, deployments, and ingresses
 
+## Resources
+
+- Cert manager, let's encrypt
+    - https://medium.com/containerum/how-to-launch-nginx-ingress-and-cert-manager-in-kubernetes-55b182a80c8f
+    - https://amasucci.com/post/2018/03/17/how-to-generate-tls-certificates-with-cert-manager-and-lets-encrypt-in-kubernetes/
+    - https://cert-manager.readthedocs.io/en/latest/reference/ingress-shim.html
+
+- Creating minikube cluster
+    - https://github.com/aws-samples/aws-workshop-for-kubernetes/blob/master/03-path-application-development/301-local-development/readme.adoc
