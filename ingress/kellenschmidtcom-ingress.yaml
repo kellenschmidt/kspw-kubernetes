@@ -5,6 +5,12 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  tls:
+  - hosts:
+    - kellenschmidt.com
+    - test.kellenschmidt.com
+    - pma.kellenschmidt.com
+    secretName: kellenschmidtcom-https
   backend:
     serviceName: default-http-backend
     servicePort: 80
@@ -16,6 +22,30 @@ spec:
         backend:
           serviceName: angular
           servicePort: 80
+      - path: /api/v1
+        backend:
+          serviceName: slim
+          servicePort: 80
+      - path: /api/v2
+        backend:
+          serviceName: express
+          servicePort: 80
+      - path: /dqc
+        backend:
+          serviceName: dqc-web
+          servicePort: 80
+      - path: /dqc/api
+        backend:
+          serviceName: dqc-api
+          servicePort: 80
+      - path: /projects
+        backend:
+          serviceName: projects
+          servicePort: 80
+      - path: /analytics
+        backend:
+          serviceName: analytics
+          servicePort: 80
   - host: test.kellenschmidt.com
     http:
       paths:
@@ -23,38 +53,21 @@ spec:
         backend:
           serviceName: test-angular
           servicePort: 80
-  - host: dqc.kellenschmidt.com
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: dqc-web
-          servicePort: 80
-      - path: /api
-        backend:
-          serviceName: dqc-api
-          servicePort: 80
-  - host: api.kellenschmidt.com
-    http:
-      paths:
-      - path: /v1
-        backend:
-          serviceName: slim
-          servicePort: 80
-      - path: /v2
-        backend:
-          serviceName: express
-          servicePort: 80
-  - host: test.api.kellenschmidt.com
-    http:
-      paths:
-      - path: /v1
+      - path: /api/v1
         backend:
           serviceName: test-slim
           servicePort: 80
-      - path: /v2
+      - path: /api/v2
         backend:
           serviceName: test-express
+          servicePort: 80
+      - path: /projects
+        backend:
+          serviceName: test-projects
+          servicePort: 80
+      - path: /analytics
+        backend:
+          serviceName: test-analytics
           servicePort: 80
   - host: pma.kellenschmidt.com
     http:
@@ -62,11 +75,4 @@ spec:
       - path: /
         backend:
           serviceName: phpmyadmin
-          servicePort: 80
-  - host: dashboard.kellenschmidt.com
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: kubernetes-dashboard
           servicePort: 80
