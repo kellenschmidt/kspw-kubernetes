@@ -25,7 +25,7 @@ kubectl apply -f ingress/kellenschmidtcom-ingress.yaml
 ```
 
 ```sh
-kubectl apply -f certificate/issuer.yaml
+kubectl apply -f certificate/issuer-prod2.yaml
 ```
 
 ### Update pod
@@ -74,10 +74,12 @@ minikube start --vm-driver=none
 
 10. DON'T follow instructions in output to move files and set permissions
 
-11. Verify proper installation
+11. Enable addons
 
 ```sh
-minikube status
+minikube addons enable ingress
+minikube addons enable dashboard
+minikube addons enable heapster
 ```
 
 12. Install Helm and Tiller
@@ -100,7 +102,7 @@ helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt
 14. Create issuer
 
 ```sh
-kubectl apply -f certificate/issuer.yaml
+kubectl apply -f certificate/issuer-prod2.yaml
 ```
 
 15. Create all secrets, deployments, and ingresses
