@@ -50,8 +50,8 @@ spec:
         - name: mysql-permissions
           mountPath: /docker-entrypoint-initdb.d
       - name: mysql-cron
-# Set version here 
-        image: kellenschmidt/kspw-mysql-cron:prod
+# Set version here
+        image: kellenschmidt/kspw-mysql-cron:latest
         imagePullPolicy: Always
         env:
         - name: ENV

@@ -33,7 +33,7 @@ spec:
       containers:
       - name: angular
 # Set version here
-        image: kellenschmidt/kspw-angular:prod2
+        image: kellenschmidt/kspw-angular:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80

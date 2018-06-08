@@ -33,7 +33,7 @@ spec:
       containers:
       - name: slimphp
 # Set version here
-        image: kellenschmidt/kspw-slimphp:prod
+        image: kellenschmidt/kspw-slimphp:latest
         imagePullPolicy: Always
         env:
         - name: MYSQL_HOST
