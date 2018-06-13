@@ -1,8 +1,11 @@
 #!/bin/bash
 
 # Arguments
-# $1: CIRCLE_PROJECT_REPONAME
-# S2: CIRCLE_BUILD_NUM
+# $1: DOCKER_USER
+# $2: CIRCLE_PROJECT_REPONAME
+# $3: CIRCLE_BUILD_NUM
 
 date=$(date +"%d-%m-%Y_%H:%M:%S")
-echo "Deploy initiated | $1 (Build #$2) | $date" >> /tmp/deploy_log.txt
+echo "Deploy initiated | deployment/$2 $2=$1/$2:v$3 | $date" >> /tmp/deploy_log.txt
+
+sudo kubectl set image deployment/$2 $2=$1/$2:v$3

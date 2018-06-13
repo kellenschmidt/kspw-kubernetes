@@ -14,11 +14,11 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: angular
+          serviceName: interactive-resume-and-url-shortener
           servicePort: 80
       - path: /api/v1
         backend:
-          serviceName: slim
+          serviceName: slimphp-api
           servicePort: 80
       - path: /api/v2
         backend:
@@ -26,7 +26,7 @@ spec:
           servicePort: 80
       - path: /dqc
         backend:
-          serviceName: dqc-web
+          serviceName: data-quality-checker
           servicePort: 80
       - path: /dqc/api
         backend:

@@ -11,10 +11,10 @@ kubectl apply -f secret/jwt-secret.yaml
 ```
 
 ```sh
-kubectl apply -f deployment/angular-deployment.yaml
-kubectl apply -f deployment/dqcweb-deployment.yaml
+kubectl apply -f deployment/interactive-resume-and-url-shortener-deployment.yaml
+kubectl apply -f deployment/data-quality-checker-deployment.yaml
 kubectl apply -f deployment/mysql-deployment.yaml
-kubectl apply -f deployment/slim-deployment.yaml
+kubectl apply -f deployment/slimphp-api-deployment.yaml
 kubectl apply -f deployment/phpmyadmin-deployment.yaml
 ```
 
@@ -30,9 +30,9 @@ kubectl apply -f certificate/issuer-prod2.yaml
 
 ### Update pod
 
-- `kubectl set image deployments/slim slimphp=kellenschmidt/kspw-slimphp:prod`
-- `kubectl rollout status deployments/slim`
-- `kubectl rollout undo deployments/slim`
+- `kubectl set image deployments/slimphp-api slimphp-api=kellenschmidt/slimphp-api:v4`
+- `kubectl rollout status deployments/slimphp-api`
+- `kubectl rollout undo deployments/slimphp-api`
 
 ### Enter pod
 

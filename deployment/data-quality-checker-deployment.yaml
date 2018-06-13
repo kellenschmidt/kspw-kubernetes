@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: dqc-web
+  name: data-quality-checker
 spec:
   selector:
     app: data-quality-checker
@@ -15,7 +15,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dqc-web
+  name: data-quality-checker
 spec:
   selector:
     matchLabels:
@@ -33,7 +33,7 @@ spec:
       containers:
       - name: dqc-web
 # Set version here
-        image: kellenschmidt/kspw-dqc:latest
+        image: kellenschmidt/data-quality-checker:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
