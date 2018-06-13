@@ -5,27 +5,27 @@
 ### Build pods
 
 ```sh
-kubectl apply -f secret/mysql-login-secret.yaml
-kubectl apply -f secret/dropbox-uploader-secret.yaml
-kubectl apply -f secret/jwt-secret.yaml
+kubectl create -f secret/mysql-login-secret.yaml
+kubectl create -f secret/dropbox-uploader-secret.yaml
+kubectl create -f secret/jwt-secret.yaml
 ```
 
 ```sh
-kubectl apply -f deployment/interactive-resume-and-url-shortener-deployment.yaml
-kubectl apply -f deployment/data-quality-checker-deployment.yaml
-kubectl apply -f deployment/mysql-deployment.yaml
-kubectl apply -f deployment/slimphp-api-deployment.yaml
-kubectl apply -f deployment/phpmyadmin-deployment.yaml
+kubectl create -f deployment/interactive-resume-and-url-shortener-deployment.yaml
+kubectl create -f deployment/data-quality-checker-deployment.yaml
+kubectl create -f deployment/mysql-deployment.yaml
+kubectl create -f deployment/slimphp-api-deployment.yaml
+kubectl create -f deployment/phpmyadmin-deployment.yaml
 ```
 
 ```sh
-kubectl apply -f ingress/kspw-ingress.yaml
-kubectl apply -f ingress/kellenforthewin-ingress.yaml
-kubectl apply -f ingress/kellenschmidtcom-ingress.yaml
+kubectl create -f ingress/kspw-ingress.yaml
+kubectl create -f ingress/kellenforthewin-ingress.yaml
+kubectl create -f ingress/kellenschmidtcom-ingress.yaml
 ```
 
 ```sh
-kubectl apply -f certificate/issuer-prod2.yaml
+kubectl create -f certificate/issuer-prod2.yaml
 ```
 
 ### Update pod
@@ -47,34 +47,47 @@ kubectl apply -f certificate/issuer-prod2.yaml
 5. Optionally add custom password-protected keypair via SSH and authorized_keys
     * Add public key to `~/.ssh/authorized_keys` on server
     * Might need to remove current kellenschmidt.com entry from `~/.ssh/known_hosts` locally
-6. Install Docker on Ubuntu EC2 Server
+
+6. Clone repository
+
+```sh
+git clone https://github.com/kellenschmidt/kspw-kubernetes.git
+```
+
+7. Make deploy script executable
+
+```sh
+chmod +x ~/kspw-kubernetes/bin/deploy.sh
+```
+
+8. Install Docker on Ubuntu EC2 Server
 
 ```sh
 sudo -i
 sudo apt-get update -qq && sudo apt-get install -qq docker.io
 ```
 
-7. Install Minikube
+9. Install Minikube
 
 ```sh
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && mv minikube /usr/local/bin/
 ```
 
-8. Install kubectl
+10. Install kubectl
 
 ```sh
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
 ```
 
-9. Start Minikube
+11. Start Minikube
 
 ```sh
 minikube start --vm-driver=none
 ```
 
-10. DON'T follow instructions in output to move files and set permissions
+12. DON'T follow instructions in output to move files and set permissions
 
-11. Enable addons
+13. Enable addons
 
 ```sh
 minikube addons enable ingress
@@ -82,7 +95,7 @@ minikube addons enable dashboard
 minikube addons enable heapster
 ```
 
-12. Install Helm and Tiller
+14. Install Helm and Tiller
 
 ```sh
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
@@ -92,20 +105,20 @@ helm init
 kubectl get pods --namespace kube-system
 ```
 
-13. Install cert manager
+15. Install cert manager
 
 ```sh
 apt-get install -qq socat
 helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-prod2 --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
 ```
 
-14. Create issuer
+16. Create issuer
 
 ```sh
-kubectl apply -f certificate/issuer-prod2.yaml
+kubectl create -f certificate/issuer-prod2.yaml
 ```
 
-15. Create all secrets, deployments, and ingresses
+17. Create all secrets, deployments, and ingresses
 
 ## Resources
 
