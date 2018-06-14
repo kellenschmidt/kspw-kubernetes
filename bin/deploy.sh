@@ -8,5 +8,4 @@
 date=$(date +"%d-%m-%Y_%H:%M:%S")
 echo "Deploy initiated | deployment/$2 $2=$1/$2:v$3 | $date" >> /tmp/deploy_log.txt
 
-sudo -i
-kubectl set image deployment/$2 $2=$1/$2:v$3
+sudo kubectl set image deployment/$2 $2=$1/$2:v$3

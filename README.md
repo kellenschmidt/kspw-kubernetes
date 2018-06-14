@@ -5,27 +5,28 @@
 ### Build pods
 
 ```sh
-kubectl create -f secret/mysql-login-secret.yaml
-kubectl create -f secret/dropbox-uploader-secret.yaml
-kubectl create -f secret/jwt-secret.yaml
+sudo kubectl create -f secret/mysql-login-secret.yaml
+sudo kubectl create -f secret/dropbox-uploader-secret.yaml
+sudo kubectl create -f secret/jwt-secret.yaml
 ```
 
 ```sh
-kubectl create -f deployment/interactive-resume-and-url-shortener-deployment.yaml
-kubectl create -f deployment/data-quality-checker-deployment.yaml
-kubectl create -f deployment/mysql-deployment.yaml
-kubectl create -f deployment/slimphp-api-deployment.yaml
-kubectl create -f deployment/phpmyadmin-deployment.yaml
+sudo kubectl create -f deployment/interactive-resume-and-url-shortener-deployment.yaml
+sudo kubectl create -f deployment/data-quality-checker-deployment.yaml
+sudo kubectl create -f deployment/dqc-api-deployment.yaml
+sudo kubectl create -f deployment/mysql-deployment.yaml
+sudo kubectl create -f deployment/slimphp-api-deployment.yaml
+sudo kubectl create -f deployment/phpmyadmin-deployment.yaml
 ```
 
 ```sh
-kubectl create -f ingress/kspw-ingress.yaml
-kubectl create -f ingress/kellenforthewin-ingress.yaml
-kubectl create -f ingress/kellenschmidtcom-ingress.yaml
+sudo kubectl create -f ingress/kspw-ingress.yaml
+sudo kubectl create -f ingress/kellenforthewin-ingress.yaml
+sudo kubectl create -f ingress/kellenschmidtcom-ingress.yaml
 ```
 
 ```sh
-kubectl create -f certificate/issuer-prod2.yaml
+sudo kubectl create -f certificate/issuer-prod2.yaml
 ```
 
 ### Update pod
@@ -70,7 +71,7 @@ sudo apt-get update -qq && sudo apt-get install -qq docker.io
 9. Install Minikube
 
 ```sh
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && mv minikube /usr/local/bin/
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 ```
 
 10. Install kubectl
@@ -82,7 +83,8 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s htt
 11. Start Minikube
 
 ```sh
-minikube start --vm-driver=none
+sudo minikube start --vm-driver=none
+sudo minikube status
 ```
 
 12. DON'T follow instructions in output to move files and set permissions
@@ -90,9 +92,9 @@ minikube start --vm-driver=none
 13. Enable addons
 
 ```sh
-minikube addons enable ingress
-minikube addons enable dashboard
-minikube addons enable heapster
+sudo minikube addons enable ingress
+sudo minikube addons enable dashboard
+sudo minikube addons enable heapster
 ```
 
 14. Install Helm and Tiller
@@ -101,21 +103,21 @@ minikube addons enable heapster
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
 chmod 700 get_helm.sh
 ./get_helm.sh
-helm init
-kubectl get pods --namespace kube-system
+sudo helm init
+sudo kubectl get pods --namespace kube-system
 ```
 
 15. Install cert manager
 
 ```sh
-apt-get install -qq socat
-helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-prod2 --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
+sudo apt-get install -qq socat
+sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-prod2 --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
 ```
 
 16. Create issuer
 
 ```sh
-kubectl create -f certificate/issuer-prod2.yaml
+sudo kubectl create -f certificate/issuer-prod2.yaml
 ```
 
 17. Create all secrets, deployments, and ingresses
