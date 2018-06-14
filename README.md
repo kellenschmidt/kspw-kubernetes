@@ -65,7 +65,7 @@ chmod +x ~/kspw-kubernetes/bin/deploy.sh
 
 ```sh
 sudo -i
-sudo apt-get update -qq && sudo apt-get install -qq docker.io
+sudo apt update -qq && sudo apt install -qq docker.io jq
 ```
 
 9. Install Minikube
@@ -110,7 +110,7 @@ sudo kubectl get pods --namespace kube-system
 15. Install cert manager
 
 ```sh
-sudo apt-get install -qq socat
+sudo apt install -qq socat
 sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-prod2 --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
 ```
 
