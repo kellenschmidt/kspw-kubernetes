@@ -64,7 +64,6 @@ chmod +x ~/kspw-kubernetes/bin/deploy.sh
 8. Install Docker on Ubuntu EC2 Server
 
 ```sh
-sudo -i
 sudo apt update -qq && sudo apt install -qq docker.io jq
 ```
 
@@ -114,13 +113,7 @@ sudo apt install -qq socat
 sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-prod2 --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
 ```
 
-16. Create issuer
-
-```sh
-sudo kubectl create -f certificate/issuer-prod2.yaml
-```
-
-17. Create all secrets, deployments, and ingresses
+16. Create all secrets, deployments, ingresses, and the issuer
 
 ## Resources
 

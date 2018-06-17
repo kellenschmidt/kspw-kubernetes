@@ -49,9 +49,9 @@ spec:
           mountPath: /var/lib/mysql
         - name: mysql-permissions
           mountPath: /docker-entrypoint-initdb.d
-      - name: mysql-cron
+      - name: mysql-backup
 # Set version here
-        image: kellenschmidt/kspw-mysql-cron:latest
+        image: kellenschmidt/mysql-backup:latest
         imagePullPolicy: Always
         env:
         - name: ENV
