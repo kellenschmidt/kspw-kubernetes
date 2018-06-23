@@ -110,7 +110,7 @@ sudo kubectl get pods --namespace kube-system
 
 ```sh
 sudo apt install -qq socat
-sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-prod2 --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
+sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-kellenforthewin --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
 ```
 
 16. Create all secrets, deployments, ingresses, and the issuer

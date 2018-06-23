@@ -30,11 +30,11 @@ spec:
         backend:
           serviceName: express
           servicePort: 80
-      - path: /dqc
+      - path: /data-quality-checker
         backend:
           serviceName: data-quality-checker
           servicePort: 80
-      - path: /dqc/api
+      - path: /data-quality-checker/api
         backend:
           serviceName: dqc-api
           servicePort: 80
