@@ -9,7 +9,6 @@ spec:
   tls:
   - hosts:
     - kellenforthe.win
-    - test.kellenforthe.win
     - pma.kellenforthe.win
     secretName: kellenforthewin-https
   backend:
@@ -46,29 +45,6 @@ spec:
       - path: /analytics
         backend:
           serviceName: analytics
-          servicePort: 80
-  - host: test.kellenforthe.win
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: test-interactive-resume-and-url-shortener
-          servicePort: 80
-      - path: /api/v1
-        backend:
-          serviceName: test-slimphp-api
-          servicePort: 80
-      - path: /api/v2
-        backend:
-          serviceName: test-express
-          servicePort: 80
-      - path: /projects
-        backend:
-          serviceName: test-projects
-          servicePort: 80
-      - path: /analytics
-        backend:
-          serviceName: test-analytics
           servicePort: 80
   - host: pma.kellenforthe.win
     http:

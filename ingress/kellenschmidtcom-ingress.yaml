@@ -8,7 +8,6 @@ spec:
   tls:
   - hosts:
     - kellenschmidt.com
-    - test.kellenschmidt.com
     - pma.kellenschmidt.com
     secretName: kellenschmidtcom-https
   backend:
@@ -45,29 +44,6 @@ spec:
       - path: /analytics
         backend:
           serviceName: analytics
-          servicePort: 80
-  - host: test.kellenschmidt.com
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: test-angular
-          servicePort: 80
-      - path: /api/v1
-        backend:
-          serviceName: test-slim
-          servicePort: 80
-      - path: /api/v2
-        backend:
-          serviceName: test-express
-          servicePort: 80
-      - path: /projects
-        backend:
-          serviceName: test-projects
-          servicePort: 80
-      - path: /analytics
-        backend:
-          serviceName: test-analytics
           servicePort: 80
   - host: pma.kellenschmidt.com
     http:
