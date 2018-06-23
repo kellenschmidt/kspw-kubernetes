@@ -26,7 +26,8 @@ sudo kubectl create -f ingress/kellenschmidtcom-ingress.yaml
 ```
 
 ```sh
-sudo kubectl create -f certificate/issuer-prod2.yaml
+sudo kubectl create -f certificate/issuer-kellenforthewin.yaml
+sudo kubectl create -f certificate/issuer-kellenschmidtcom.yaml
 ```
 
 ### Update pod
@@ -53,67 +54,22 @@ sudo kubectl create -f certificate/issuer-prod2.yaml
 
 ```sh
 git clone https://github.com/kellenschmidt/kspw-kubernetes.git
+cd kspw-kubernetes/
 ```
 
-7. Make deploy script executable
+7. Make initialization script executable
 
 ```sh
-chmod +x ~/kspw-kubernetes/bin/deploy.sh
+chmod +x bin/init-server.sh
 ```
 
-8. Install Docker on Ubuntu EC2 Server
+8. Populate secret files
+
+9. Create deployments, ingress, and certificate
 
 ```sh
-sudo apt update -qq && sudo apt install -qq docker.io jq
+bash bin/crd.sh create
 ```
-
-9. Install Minikube
-
-```sh
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
-```
-
-10. Install kubectl
-
-```sh
-curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
-```
-
-11. Start Minikube
-
-```sh
-sudo minikube start --vm-driver=none
-sudo minikube status
-```
-
-12. DON'T follow instructions in output to move files and set permissions
-
-13. Enable addons
-
-```sh
-sudo minikube addons enable ingress
-sudo minikube addons enable dashboard
-sudo minikube addons enable heapster
-```
-
-14. Install Helm and Tiller
-
-```sh
-curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
-chmod 700 get_helm.sh
-./get_helm.sh
-sudo helm init
-sudo kubectl get pods --namespace kube-system
-```
-
-15. Install cert manager
-
-```sh
-sudo apt install -qq socat
-sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-kellenforthewin --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
-```
-
-16. Create all secrets, deployments, ingresses, and the issuer
 
 ## Resources
 
