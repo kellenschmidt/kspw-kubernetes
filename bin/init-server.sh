@@ -30,7 +30,7 @@ sudo apt install -qq socat
 sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-certs --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
 
 # Create secrets
-touch mysql-login-secret.yaml dropbox-uploader-secret.yaml jwt-secret.yaml
+touch mysql-login-secret.yaml dropbox-uploader-secret.yaml jwt-secret.yaml oauth2-github.yaml
 
 GREEN='\033[0;32m'
 NC='\033[0m'

@@ -57,10 +57,11 @@ git clone https://github.com/kellenschmidt/kspw-kubernetes.git
 cd kspw-kubernetes/
 ```
 
-7. Make initialization script executable
+7. Make initialization script executable and then execute it
 
 ```sh
 chmod +x bin/init-server.sh
+bash bin/init-server.sh
 ```
 
 8. Populate secret files
@@ -68,17 +69,8 @@ chmod +x bin/init-server.sh
 9. Create deployments, ingress, and certificate
 
 ```sh
-bash bin/crd.sh create
+bash bin/crd.sh create <NAME OF WEBSITE>
 ```
-
-10. Install Kubernetes Dashboard
-
-```sh
-sudo helm install stable/oauth2-proxy --namespace=kube-system -f dashboard/proxy-values-kellenforthewin.yaml --name=k8s-dash-oauth2
-sudo helm install stable/kubernetes-dashboard --namespace=kube-system -f dashboard/dashboard-values.yaml --name=k8s-dash
-```
-
-<!-- sudo helm upgrade --namespace=kube-system k8s-dash stable/kubernetes-dashboard -f dashboard-values.yaml -->
 
 ## Resources
 
@@ -89,3 +81,6 @@ sudo helm install stable/kubernetes-dashboard --namespace=kube-system -f dashboa
 
 - Creating minikube cluster
     - https://github.com/aws-samples/aws-workshop-for-kubernetes/blob/master/03-path-application-development/301-local-development/readme.adoc
+
+- Securing Kubernetes dashboard
+    - https://github.com/kubernetes/ingress-nginx/tree/master/docs/examples/auth/oauth-external-auth
