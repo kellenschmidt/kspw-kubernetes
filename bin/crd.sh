@@ -4,6 +4,9 @@
 # $1: create / replace / delete
 # $2: kellenforthewin / kellenschmidtcom
 
+# Set env var for mysql deployment
+sed -i "s/placeholder/$2/g" deployment/mysql-deployment.yaml
+
 # Create deployments
 sudo kubectl $1 -f deployment/interactive-resume-and-url-shortener-deployment.yaml
 sudo kubectl $1 -f deployment/slimphp-api-deployment.yaml

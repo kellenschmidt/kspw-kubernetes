@@ -55,8 +55,9 @@ spec:
         imagePullPolicy: Always
         env:
         - name: ENV
-# Set environment here 
-          value: prod2
+# Set environment here
+# Use sed in bin/crd.sh to replace "placeholder" with website name value
+          value: placeholder
         envFrom:
         - secretRef:
             name: mysql-login
