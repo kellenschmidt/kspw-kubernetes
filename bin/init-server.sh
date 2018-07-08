@@ -27,7 +27,7 @@ sudo kubectl get pods --namespace kube-system
 
 # Install cert manager
 sudo apt install -qq socat
-sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-kellenforthewin --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
+sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-certs --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
 
 # Create secrets
 touch mysql-login-secret.yaml dropbox-uploader-secret.yaml jwt-secret.yaml

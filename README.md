@@ -71,6 +71,15 @@ chmod +x bin/init-server.sh
 bash bin/crd.sh create
 ```
 
+10. Install Kubernetes Dashboard
+
+```sh
+sudo helm install stable/oauth2-proxy --namespace=kube-system -f dashboard/proxy-values-kellenforthewin.yaml --name=k8s-dash-oauth2
+sudo helm install stable/kubernetes-dashboard --namespace=kube-system -f dashboard/dashboard-values.yaml --name=k8s-dash
+```
+
+<!-- sudo helm upgrade --namespace=kube-system k8s-dash stable/kubernetes-dashboard -f dashboard-values.yaml -->
+
 ## Resources
 
 - Cert manager, let's encrypt
