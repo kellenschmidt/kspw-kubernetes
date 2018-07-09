@@ -20,9 +20,18 @@ if [ "$2" != "kspw" ]; then
   sudo kubectl $1 -f issuer/general-issuer.yaml
 
   # Create dashboard
+  sudo kubectl $1 -f dashboard/dashboard-certificate-$2.yaml
   sudo kubectl $1 -f dashboard/oauth2-proxy-$2.yaml
   sudo kubectl $1 -f dashboard/dashboard-ingress-$2.yaml
+
+  # Create secrets
+  sudo kubectl $1 -f secret/oauth2-github.yaml
 fi
+
+# Create secrets
+sudo kubectl $1 -f secret/mysql-login-secret.yaml
+sudo kubectl $1 -f secret/dropbox-uploader-secret.yaml
+sudo kubectl $1 -f secret/jwt-secret.yaml
 
 # Create ingresses
 sudo kubectl $1 -f ingress/$2-ingress.yaml

@@ -1,45 +1,5 @@
 # kspw-kubernetes
 
-## Kubernetes commands
-
-### Build pods
-
-```sh
-sudo kubectl create -f secret/mysql-login-secret.yaml
-sudo kubectl create -f secret/dropbox-uploader-secret.yaml
-sudo kubectl create -f secret/jwt-secret.yaml
-```
-
-```sh
-sudo kubectl create -f deployment/interactive-resume-and-url-shortener-deployment.yaml
-sudo kubectl create -f deployment/data-quality-checker-deployment.yaml
-sudo kubectl create -f deployment/dqc-api-deployment.yaml
-sudo kubectl create -f deployment/mysql-deployment.yaml
-sudo kubectl create -f deployment/slimphp-api-deployment.yaml
-sudo kubectl create -f deployment/phpmyadmin-deployment.yaml
-```
-
-```sh
-sudo kubectl create -f ingress/kspw-ingress.yaml
-sudo kubectl create -f ingress/kellenforthewin-ingress.yaml
-sudo kubectl create -f ingress/kellenschmidtcom-ingress.yaml
-```
-
-```sh
-sudo kubectl create -f certificate/issuer-kellenforthewin.yaml
-sudo kubectl create -f certificate/issuer-kellenschmidtcom.yaml
-```
-
-### Update pod
-
-- `kubectl set image deployments/slimphp-api slimphp-api=kellenschmidt/slimphp-api:v4`
-- `kubectl rollout status deployments/slimphp-api`
-- `kubectl rollout undo deployments/slimphp-api`
-
-### Enter pod
-
-- `kubectl exec -it mysql-74784c6b48-mbtpf -c mysql-db bash`
-
 ## AWS Deployment
 
 1. Launch Ubuntu EC2 instance
@@ -66,11 +26,23 @@ bash bin/init-server.sh
 
 8. Populate secret files
 
-9. Create deployments, ingress, and certificate
+9. Create deployments, ingresses, issuers, and secrets
 
 ```sh
 bash bin/crd.sh create <NAME OF WEBSITE>
 ```
+
+## Kubernetes commands
+
+### Update pod
+
+- `kubectl set image deployments/slimphp-api slimphp-api=kellenschmidt/slimphp-api:v4`
+- `kubectl rollout status deployments/slimphp-api`
+- `kubectl rollout undo deployments/slimphp-api`
+
+### Enter pod
+
+- `kubectl exec -it mysql-74784c6b48-mbtpf -c mysql-db bash`
 
 ## Resources
 

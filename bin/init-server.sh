@@ -24,14 +24,24 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 sudo helm init
 sudo kubectl get pods --namespace kube-system
+rm get_helm.sh
 
 # Install cert manager
 sudo apt install -qq socat
 sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-certs --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
 
 # Create secrets
-touch mysql-login-secret.yaml dropbox-uploader-secret.yaml jwt-secret.yaml oauth2-github.yaml
+mkdir secret
+touch secret/mysql-login-secret.yaml secret/dropbox-uploader-secret.yaml secret/jwt-secret.yaml secret/oauth2-github.yaml
 
+CYAN='\033[0;36m'
+# PURPLE='\033[0;35m'
+# BLUE='\033[0;34m'
+# ORANGE='\033[0;33m'
 GREEN='\033[0;32m'
 NC='\033[0m'
-printf "${GREEN}Now populate the secret files\n\n"
+printf "${GREEN}Now populate the secret files\n"
+printf "${CYAN}nano secret/mysql-login-secret.yaml\n"
+printf "${CYAN}nano secret/dropbox-uploader-secret.yaml\n"
+printf "${CYAN}nano secret/jwt-secret.yaml\n"
+printf "${CYAN}nano secret/oauth2-github.yaml\n\n"
