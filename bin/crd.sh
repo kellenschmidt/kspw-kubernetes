@@ -21,7 +21,7 @@ if [ "$2" != "kspw" ]; then
 
   # Create dashboard
   sudo kubectl $1 -f dashboard/dashboard-certificate-$2.yaml
-  sudo kubectl $1 -f dashboard/oauth2-proxy-$2.yaml
+  sudo kubectl $1 -f dashboard/oauth2-proxy.yaml
   sudo kubectl $1 -f dashboard/dashboard-ingress-$2.yaml
 
   # Create secrets

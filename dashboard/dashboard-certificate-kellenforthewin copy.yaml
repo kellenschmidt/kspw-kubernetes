@@ -1,0 +1,18 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: dashboard-certificate
+  namespace: kube-system
+spec:
+  secretName: certificate-k8s-dashboard
+  dnsNames:
+  - k8s.kellenschmidt.com
+  acme:
+    config:
+    - http01:
+        ingressClass: nginx
+      domains:
+      - k8s.kellenschmidt.com
+  issuerRef:
+    name: letsencrypt-certs
+    kind: ClusterIssuer
