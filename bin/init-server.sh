@@ -28,6 +28,7 @@ rm get_helm.sh
 
 # Install cert manager
 sudo apt install -qq socat
+sleep 10s # Waits 10 seconds.
 sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-certs --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
 
 # Create secrets
