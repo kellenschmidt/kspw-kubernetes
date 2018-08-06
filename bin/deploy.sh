@@ -12,7 +12,8 @@ else
   deployment=$3
 fi
 
-tag=$(curl -s https://registry.hub.docker.com/v1/repositories/$1/$2/tags | jq ".[].name" | sed -e "s/\"//g" | sort -V | tail -1)
+docker_hub_token=$(curl "https://auth.docker.io/token?service=registry.docker.io&scope=repository:$1/$2:pull" | jq -r '.token')
+tag=$(curl -H "Authorization: Bearer $docker_hub_token" https://registry.hub.docker.com/v2/$1/$2/tags/list | jq '."tags"[]' | sort -V | tail -1 | sed -e 's/^"//' -e 's/"$//')
 
 date=$(date +"%d-%m-%Y_%H:%M:%S")
 echo "Deploy initiated | deployment/$deployment $2=$1/$2:$tag | $date" >> /tmp/deploy_log.txt

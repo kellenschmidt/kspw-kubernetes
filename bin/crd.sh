@@ -11,6 +11,9 @@ sed -i "s/placeholder/$2/g" deployment/mysql-deployment.yaml
 sudo kubectl $1 -f secret/mysql-login.yaml
 sudo kubectl $1 -f secret/dropbox-uploader.yaml
 sudo kubectl $1 -f secret/jwt.yaml
+sudo kubectl $1 -f secret/mongo-login.yaml
+sudo kubectl $1 -f secret/useragent-api.yaml
+# sudo kubectl $1 -f secret/twilio.yaml
 
 if [ "$2" != "kspw" ]; then
   # Create secrets
@@ -35,3 +38,8 @@ sudo kubectl $1 -f deployment/data-quality-checker-deployment.yaml
 sudo kubectl $1 -f deployment/dqc-api-deployment.yaml
 sudo kubectl $1 -f deployment/mysql-deployment.yaml
 sudo kubectl $1 -f deployment/phpmyadmin-deployment.yaml
+sudo kubectl $1 -f deployment/graphql-express-api-deployment.yaml
+sudo kubectl $1 -f deployment/mongo-deployment.yaml
+# sudo kubectl $1 -f deployment/analytics-for-links-and-sites-deployment.yaml
+# sudo kubectl $1 -f deployment/laundry-tracker-deployment.yaml
+

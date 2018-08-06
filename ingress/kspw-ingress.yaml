@@ -22,7 +22,7 @@ spec:
           servicePort: 80
       - path: /api/v2
         backend:
-          serviceName: express
+          serviceName: graphql-express-api
           servicePort: 80
       - path: /data-quality-checker
         backend:
@@ -38,7 +38,11 @@ spec:
           servicePort: 80
       - path: /analytics
         backend:
-          serviceName: analytics
+          serviceName: analytics-for-links-and-sites
+          servicePort: 80
+      - path: /laundry
+        backend:
+          serviceName: laundry-tracker
           servicePort: 80
   - host: pma.kspw
     http:
