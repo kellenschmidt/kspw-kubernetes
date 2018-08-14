@@ -40,6 +40,7 @@ sudo kubectl $1 -f deployment/mysql-deployment.yaml
 sudo kubectl $1 -f deployment/phpmyadmin-deployment.yaml
 sudo kubectl $1 -f deployment/graphql-express-api-deployment.yaml
 sudo kubectl $1 -f deployment/mongo-deployment.yaml
+sudo kubectl $1 -f deployment/metabase-deployment.yaml
 # sudo kubectl $1 -f deployment/analytics-for-links-and-sites-deployment.yaml
 # sudo kubectl $1 -f deployment/laundry-tracker-deployment.yaml
 

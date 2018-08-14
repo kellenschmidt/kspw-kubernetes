@@ -31,6 +31,9 @@ sudo apt install -qq socat
 sleep 10s # Waits 10 seconds.
 sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-certs --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
 
+# Install metabase
+# sudo helm install --name metabase -f metabase-config.yaml stable/metabase
+
 # Create secrets
 mkdir secret
 touch secret/mysql-login.yaml secret/dropbox-uploader.yaml secret/jwt.yaml secret/oauth2-github.yaml secret/mongo-login.yaml secret/useragent-api.yaml
