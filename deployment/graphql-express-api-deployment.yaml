@@ -42,7 +42,7 @@ spec:
           value: "production"
         envFrom:
         - secretRef:
-            name: mysql-login
+            name: mongo-login
         - secretRef:
             name: useragent-api
         ports:

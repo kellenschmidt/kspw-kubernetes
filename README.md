@@ -17,10 +17,9 @@ git clone https://github.com/kellenschmidt/kspw-kubernetes.git
 cd kspw-kubernetes/
 ```
 
-7. Make initialization script executable and then execute it
+7. Execute server initialization script
 
 ```sh
-chmod +x bin/init-server.sh
 bash bin/init-server.sh
 ```
 
@@ -29,7 +28,7 @@ bash bin/init-server.sh
 9. Create deployments, ingresses, issuers, and secrets
 
 ```sh
-bash bin/crd.sh create <NAME OF WEBSITE>
+bash bin/crd.sh create <NAME OF WEBSITE (kellenforthewin/kellenschmidtcom)>
 ```
 
 ## Kubernetes commands

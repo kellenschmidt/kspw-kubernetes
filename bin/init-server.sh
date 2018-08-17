@@ -24,11 +24,12 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 sudo helm init
 sudo kubectl get pods --namespace kube-system
+sleep 15s # Waits 15 seconds.
+sudo kubectl get pods --namespace kube-system
 rm get_helm.sh
 
 # Install cert manager
 sudo apt install -qq socat
-sleep 10s # Waits 10 seconds.
 sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsencrypt-certs --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
 
 # Install metabase
