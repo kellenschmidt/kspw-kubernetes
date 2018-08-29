@@ -32,15 +32,15 @@ fi
 sudo kubectl $1 -f ingress/$2-ingress.yaml
 
 # Create deployments
-sudo kubectl $1 -f deployment/interactive-resume-and-url-shortener-deployment.yaml
-sudo kubectl $1 -f deployment/slimphp-api-deployment.yaml
-sudo kubectl $1 -f deployment/data-quality-checker-deployment.yaml
-sudo kubectl $1 -f deployment/dqc-api-deployment.yaml
+sudo kubectl $1 -f deployment/mongo-deployment.yaml
 sudo kubectl $1 -f deployment/mysql-deployment.yaml
 sudo kubectl $1 -f deployment/phpmyadmin-deployment.yaml
+sudo kubectl $1 -f deployment/dqc-api-deployment.yaml
+sudo kubectl $1 -f deployment/interactive-resume-and-url-shortener-deployment.yaml
+sudo kubectl $1 -f deployment/data-quality-checker-deployment.yaml
+sudo kubectl $1 -f deployment/slimphp-api-deployment.yaml
 sudo kubectl $1 -f deployment/graphql-express-api-deployment.yaml
-sudo kubectl $1 -f deployment/mongo-deployment.yaml
 # sudo kubectl $1 -f deployment/metabase-deployment.yaml
-# sudo kubectl $1 -f deployment/analytics-for-links-and-sites-deployment.yaml
+sudo kubectl $1 -f deployment/analytics-for-links-and-sites-deployment.yaml
 # sudo kubectl $1 -f deployment/laundry-tracker-deployment.yaml
 

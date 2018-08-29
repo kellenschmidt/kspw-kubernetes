@@ -16,14 +16,18 @@ data:
     set -e
     mongo <<EOF
     use admin
+    db.enableFreeMonitoring()
     db.createUser({
       user:  '$MONGO_USER',
       pwd: '$MONGO_PASSWORD',
       roles: [
         { role: "readWrite", db: "test" },
-        { role: "readWrite", db: "admin" }
+        { role: "readWrite", db: "admin" },
+        { role: "readWrite", db: "interactions"}
       ]
     })
+    use interactions
+    db.helloworld.insert({"hello":"world"})
     EOF
 kind: ConfigMap
 metadata:
