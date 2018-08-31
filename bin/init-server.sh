@@ -37,7 +37,7 @@ sudo helm install --name cert-manager --set ingressShim.defaultIssuerName=letsen
 
 # Create secrets
 mkdir secret
-touch secret/dropbox-uploader.yaml secret/jwt.yaml secret/mongo-login.yaml secret/mysql-login.yaml secret/oauth2-github.yaml secret/useragent-api.yaml
+touch secret/dropbox-uploader.yaml secret/jwt.yaml secret/mongo-login.yaml secret/mysql-login.yaml secret/oauth2-github.yaml secret/useragent-api.yaml secret/google-maps.yaml
 
 # GREEN='\033[0;32m'
 # ORANGE='\033[0;33m'
@@ -47,6 +47,7 @@ CYAN='\033[0;36m'
 NC='\033[0m'
 printf "${BLUE}Now populate the secret files\n"
 printf "${CYAN}nano secret/dropbox-uploader.yaml\n"
+printf "${CYAN}nano secret/google-maps.yaml\n"
 printf "${CYAN}nano secret/jwt.yaml\n"
 printf "${CYAN}nano secret/mongo-login.yaml\n"
 printf "${CYAN}nano secret/mysql-login.yaml\n"

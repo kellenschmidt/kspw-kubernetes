@@ -35,5 +35,8 @@ spec:
 # Set version here
         image: kellenschmidt/analytics-for-links-and-sites:latest
         imagePullPolicy: Always
+        envFrom:
+        - secretRef:
+            name: google-maps
         ports:
         - containerPort: 80

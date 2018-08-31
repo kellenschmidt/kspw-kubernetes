@@ -13,6 +13,7 @@ sudo kubectl $1 -f secret/dropbox-uploader.yaml
 sudo kubectl $1 -f secret/jwt.yaml
 sudo kubectl $1 -f secret/mongo-login.yaml
 sudo kubectl $1 -f secret/useragent-api.yaml
+sudo kubectl $1 -f secret/google-maps.yaml
 # sudo kubectl $1 -f secret/twilio.yaml
 
 if [ "$2" != "kspw" ]; then
