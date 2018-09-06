@@ -24,7 +24,8 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 sudo helm init
 sudo kubectl get pods --namespace kube-system
-sleep 15s # Waits 15 seconds.
+# 15 seconds was too short
+sleep 30s # Waits 30 seconds
 sudo kubectl get pods --namespace kube-system
 rm get_helm.sh
 

@@ -2,7 +2,7 @@
 
 # Arguments
 # $1: create / replace / delete
-# $2: kellenforthewin / kellenschmidtcom
+# $2: kspw / kellenforthewin / kellenschmidtcom
 
 # Set env var for mysql deployment
 sed -i "s/placeholder/$2/g" deployment/mysql-deployment.yaml
@@ -45,3 +45,9 @@ sudo kubectl $1 -f deployment/graphql-express-api-deployment.yaml
 sudo kubectl $1 -f deployment/analytics-for-links-and-sites-deployment.yaml
 # sudo kubectl $1 -f deployment/laundry-tracker-deployment.yaml
 
+if [ "$1" == "create" ]; then
+  GREEN='\033[0;32m'
+  ORANGE='\033[0;33m'
+  printf "${GREEN}\n${2} has been successfully deployed!\n"
+  printf "${ORANGE}Please wait at least 10 minutes for all containers to finish starting up\n\n"
+fi

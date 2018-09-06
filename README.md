@@ -3,29 +3,34 @@
 ## AWS Deployment
 
 1. Launch Ubuntu EC2 instance
-2. Create keypair for SSH
-3. Configure security group to allow HTTP(80), HTTPS(443), and SSH(22)
-4. Create and associate elastic IP address
-5. Optionally add custom password-protected keypair via SSH and authorized_keys
-    * Add public key to `~/.ssh/authorized_keys` on server
-    * Might need to remove current kellenschmidt.com entry from `~/.ssh/known_hosts` locally
+    - Create keypair for SSH
+    - Configure security group to allow HTTP(80), HTTPS(443), and SSH(22)
+    - Create and associate elastic IP address
 
-6. Clone repository
+2. Connect to server
+    - Remove current kellenforthe.win/kellenschmidt.com entry from `~/.ssh/known_hosts` locally
+    - Optionally add custom password-protected keypair via SSH and authorized_keys
+        - `ssh -i kellenforthewin.pem ubuntu@kellenforthe.win`
+        - `ssh -i kellenschmidtcom.pem ubuntu@kellenschmidt.com`
+        - Add public key to `~/.ssh/authorized_keys` on server
+            - `cat ~/.ssh/id_rsa.pub`
+
+3. Clone repository
 
 ```sh
 git clone https://github.com/kellenschmidt/kspw-kubernetes.git
 cd kspw-kubernetes/
 ```
 
-7. Execute server initialization script
+4. Execute server initialization script
 
 ```sh
 bash bin/init-server.sh
 ```
 
-8. Populate secret files
+5. Populate secret files
 
-9. Create deployments, ingresses, issuers, and secrets
+6. Create deployments, ingresses, issuers, and secrets
 
 ```sh
 bash bin/crd.sh create <NAME OF WEBSITE (kellenforthewin/kellenschmidtcom)>
