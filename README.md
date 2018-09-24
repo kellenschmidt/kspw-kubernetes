@@ -1,5 +1,7 @@
 # kspw-kubernetes
 
+K8s infrastructure used by kellenschmidt.com and kellenforthe.win. Handles container orchestration, networking, monitoring, zero-downtime deployments, and much more!
+
 ## AWS Deployment
 
 1. Launch Ubuntu EC2 instance
