@@ -46,8 +46,9 @@ sudo kubectl $1 -f deployment/analytics-for-links-and-sites-deployment.yaml
 # sudo kubectl $1 -f deployment/laundry-tracker-deployment.yaml
 
 if [ "$1" == "create" ]; then
+  currentTime=$(date +"%H:%M:%S")
   GREEN='\033[0;32m'
   ORANGE='\033[0;33m'
   printf "${GREEN}\n${2} has been successfully deployed!\n"
-  printf "${ORANGE}Please wait at least 10 minutes for all containers to finish starting up\n\n"
+  printf "${ORANGE}Please wait at least 10 minutes for all containers to finish starting up. (Started: ${currentTime})\n\n"
 fi

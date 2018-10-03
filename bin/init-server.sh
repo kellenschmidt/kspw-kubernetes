@@ -24,8 +24,8 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 sudo helm init
 sudo kubectl get pods --namespace kube-system
-printf "Waiting 30 seconds for Tiller container to finish starting up..."
-sleep 30s
+printf "Waiting 40 seconds for Tiller container to finish starting up..."
+sleep 40s
 sudo kubectl get pods --namespace kube-system
 rm get_helm.sh
 
